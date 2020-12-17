@@ -7,24 +7,55 @@
 #include <queue>
 #include <stack>
 
+#define MAX 200
+#define TARGET 2020
+
 using namespace std;
 
-int main() {
-    int arra[1000000];
+int arra[1000000];
 
-    for (int i = 0; i < 200; i++) {
+// first sub question, find 2 numbers that add to the target
+int a() {
+    int a = 0;
+    int b = MAX - 1;
+    while (a < b) {
+        if (arra[a] + arra[b] == TARGET) {
+            return arra[a] * arra[b];
+        } else if (arra[a] + arra[b] < TARGET) {
+            a++;
+        } else {
+            b--;
+        }
+    }
+    return -1;
+}
+
+// second sub question, find 2 numbers that add to the target
+int b() {
+    for (int a = 0; a < MAX; a++) {
+        for (int b = 0; b < MAX; b++) {
+            for (int c = 0; c < MAX; c++) {
+                if (arra[a] + arra[b] + arra[c] == TARGET) {
+                    return arra[a] * arra[b] * arra[c];
+                }
+            }
+        }
+    }
+    return -1;
+}
+
+int main() {
+
+    // input in data
+    for (int i = 0; i < MAX; i++) {
         int data;
         cin >> data;
         arra[i] = data;
     }
 
-    for (int a = 0; a < 200; a++) {
-        for (int b = 0; b < 200; b++) {
-            for (int c = 0; c < 200; c++) {
-                if (arra[a] + arra[b] + arra[c] == 2020) {
-                    printf("ANS: %d\n", arra[a] * arra[b] * arra[c]);
-                }
-            }
-        }
-    }
+    sort(arra, arra+MAX);
+
+    printf("a: %d\n", a());
+    printf("b: %d\n", b());
+
 }
