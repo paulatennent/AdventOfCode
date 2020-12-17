@@ -1,6 +1,6 @@
 import sys
 
-def slope(xAdd, yAdd, lst):
+def slope(xAdd, yAdd):
     # count number of trees
     count = 0
 
@@ -18,8 +18,19 @@ def slope(xAdd, yAdd, lst):
         x += xAdd
         x = x % width
         y += yAdd
-    print(count)
     return count
+
+# first subset, find how many trees collide with a slope of down 1, across 3
+def a():
+    return slope(3, 1)
+
+def b():
+    total = 1
+    for i in [1, 3, 5, 7]:
+        total = total * slope(i, 1)
+        
+    total = total * slope(1, 2)
+    return total
 
 
 # input in lines
@@ -28,11 +39,5 @@ lst = wholeInput.split("\n")
 length = len(lst)
 width = len(lst[0])
 
-total = 1
-
-for i in [1, 3, 5, 7]:
-    total = total * slope(i, 1, lst)
-    
-total = total * slope(1, 2, lst)
-
-print(total)
+print(a())
+print(b())
