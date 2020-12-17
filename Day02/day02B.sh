@@ -1,4 +1,5 @@
-input=$(cat pass.in | sed 's/ /_/g')
+# hhah this doesnt really work but idk just look at the python file
+input=$(cat input.txt | sed 's/ /_/g')
 for line in $input
 do
     #echo $line
@@ -10,6 +11,9 @@ do
     pass=$(echo $line | cut -d_ -f3)
 
     if test $(echo $pass | cut -c$lo | egrep "$letter") && test ! $(echo $pass | cut -c$hi | egrep "$letter")
+    then
+        echo ">> $line"
+    elif test $(echo $pass | cut -c$lo | egrep "$letter") && test ! $(echo $pass | cut -c$hi | egrep "$letter")
     then
         echo ">> $line"
     fi

@@ -1,3 +1,4 @@
+# day 2 subset 1 solution in shell
 input=$(cat pass.in | sed 's/ /_/g')
 for line in $input
 do
