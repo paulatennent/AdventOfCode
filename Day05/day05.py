@@ -32,7 +32,6 @@ def a():
     return maxId
 
 def b():
-    maxId = 0
     idSet = set()
 
     # for each pass
@@ -57,8 +56,6 @@ def b():
 
         id = row * 8 + col
         idSet.add(id)
-
-        maxId = max(id, maxId)
 
     first = False
     for i in idSet:

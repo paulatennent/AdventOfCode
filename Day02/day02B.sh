@@ -1,4 +1,5 @@
-# hhah this doesnt really work but idk just look at the python file
+# aahaaaahah this doesnt really work but idk just look at the python file
+
 input=$(cat input.txt | sed 's/ /_/g')
 for line in $input
 do
