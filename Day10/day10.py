@@ -24,7 +24,13 @@ def b():
             dp[lines[i]] += dp[lines[i - 2]]
         if (i > 2 and lines[i] - lines[i - 3] <= 3):
             dp[lines[i]] += dp[lines[i - 3]]
-    print(dp)
+        # add one for connecting straight to the outlet
+        if (lines[i] <= 3):
+            dp[lines[i]] += 1
+    #print(lines)
+    #for item in dp:
+    #    print(item, dp[item])
+    #print(dp)
     return dp[lines[i]]
 
 wholeInput = sys.stdin.read()
