@@ -1,51 +1,8 @@
-# AdventOfCode2020
-- [x] day01A
-- [x] day01B
-- [x] day02A
-- [x] day02B
-- [x] day03A
-- [x] day03B
-- [x] day04A
-- [x] day04B
-- [x] day05A
-- [x] day05B
-- [x] day06A
-- [x] day06B
-- [x] day07A
-- [x] day07B
-- [x] day08A
-- [ ] day08B
-- [x] day09A
-- [x] day09B
-- [ ] day10A
-- [ ] day10B
-- [ ] day11A
-- [ ] day11B
-- [ ] day12A
-- [ ] day12B
-- [ ] day13A
-- [ ] day13B
-- [ ] day14A
-- [ ] day14B
-- [ ] day15A
-- [ ] day15B
-- [ ] day16A
-- [ ] day16B
-- [ ] day17A
-- [ ] day17B
-- [ ] day18A
-- [ ] day18B
-- [ ] day19A
-- [ ] day19B
-- [ ] day20A
-- [ ] day20B
-- [ ] day21A
-- [ ] day21B
-- [ ] day22A
-- [ ] day22B
-- [ ] day23A
-- [ ] day23B
-- [ ] day24A
-- [ ] day24B
-- [ ] day25A
-- [ ] day25B
+# 2023
+
+# 2020
+# Advent of Code
+
+- 2020 - Python, Shell
+- 2023 - Rust, Ocaml
+nn
