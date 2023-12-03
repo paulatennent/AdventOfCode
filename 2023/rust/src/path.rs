@@ -1,15 +1,18 @@
-use crate::opt::Question;
 use crate::opt::Opt;
+use crate::opt::Question;
 
-pub fn get_path(opt: &Opt) -> &'static str {
+pub fn get_path(opt: &Opt) -> String {
+    let day = match opt.day {
+        1 => "01",
+        2 => "02",
+        _ => panic!("Provided day not implemented"),
+    };
 
     match opt.small {
-        true => {
-            match opt.question {
-                Question::A => "../input/01_A_small.in",
-                Question::B => "../input/01_B_small.in",
-            }
+        true => match opt.question {
+            Question::A => format!("../input/{}_A_small.in", day).clone(),
+            Question::B => format!("../input/{}_B_small.in", day),
         },
-        false => "../input/01.in",
+        false => format!("../input/{}.in", day),
     }
 }
