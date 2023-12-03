@@ -41,9 +41,9 @@ fn get_a(input: String) -> u32 {
         let i = i as i32;
 
         // add in the remaining 4
-        // i i i
-        // i c I
         // I I I
+        // I c i
+        // i i i
         if i == 1 || i == row_length - 1 || i == row_length || i == row_length + 1 {
             let iter = input.chars().peekable();
             iters.push(iter);
@@ -82,6 +82,6 @@ fn is_symbol(c: &char) -> bool {
     !(c.is_ascii_digit() || *c == '.' || *c == '\n')
 }
 
-fn get_b(_input: String) -> i32 {
-    100
+fn get_b(input: String) -> i32 {
+    todo!()
 }
