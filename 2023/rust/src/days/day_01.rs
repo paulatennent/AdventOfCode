@@ -55,31 +55,28 @@ fn get_b(input: String) -> i32 {
 }
 
 fn find_first(s: String, digit_names: &HashMap<i32, &str>) -> Option<i32> {
-    let digits = (0..10).collect::<Vec<_>>();
+    let digits = (1..10).collect::<Vec<_>>();
 
     let mut words_occ = digits
         .iter()
-        .map(|d| s.find(digit_names.get(&d).unwrap()))
-        .enumerate()
+        .map(|d| (s.find(digit_names.get(&d).unwrap()), d))
         .collect::<Vec<_>>();
 
     let mut digits_occ = digits
         .iter()
-        .map(|d| s.find(&d.to_string()))
-        .enumerate()
+        .map(|d| (s.find(&d.to_string()), d))
         .collect::<Vec<_>>();
 
     words_occ.append(&mut digits_occ);
 
     words_occ
         .iter()
-        .filter_map(|(a, b)| match b {
+        .filter_map(|(index, num)| match index {
             None => None,
-            Some(b) => Some((a, b)),
+            Some(index) => Some((index, num)),
         })
-        .map(|(num, index)| (index, num))
         .min() // find min index
-        .map(|(_index, num)| *num as i32)
+        .map(|(_index, num)| **num as i32)
 }
 
 fn find_last(s: String, digit_names: &HashMap<i32, &str>) -> Option<i32> {
@@ -87,25 +84,28 @@ fn find_last(s: String, digit_names: &HashMap<i32, &str>) -> Option<i32> {
 
     let mut words_occ = digits
         .iter()
-        .map(|d| s.rfind(digit_names.get(&d).unwrap()))
-        .enumerate()
+        .map(|d| {
+            let index = s.rfind(digit_names.get(&d).unwrap());
+            (index, d)
+        })
         .collect::<Vec<_>>();
 
     let mut digits_occ = digits
         .iter()
-        .map(|d| s.rfind(&d.to_string()))
-        .enumerate()
+        .map(|d| {
+            let index = s.rfind(&d.to_string());
+            (index, d)
+        })
         .collect::<Vec<_>>();
 
     words_occ.append(&mut digits_occ);
 
     words_occ
         .iter()
-        .filter_map(|(a, b)| match b {
+        .filter_map(|(index, number)| match index {
             None => None,
-            Some(b) => Some((a, b)),
+            Some(index) => Some((index, number)),
         })
-        .map(|(num, index)| (index, num))
         .max()
-        .map(|(_index, num)| *num as i32)
+        .map(|(_index, num)| **num as i32)
 }
