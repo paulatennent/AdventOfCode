@@ -1,7 +1,7 @@
 use crate::opt::{Opt, Question};
 use regex::Regex;
 
-pub fn day_02(opt: Opt, input: String) {
+pub fn solve(opt: Opt, input: String) {
     match opt.question {
         Question::A => {
             println!("Solution to A: {}", get_a(input));

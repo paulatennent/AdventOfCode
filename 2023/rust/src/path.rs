@@ -5,6 +5,7 @@ pub fn get_path(opt: &Opt) -> String {
     let day = match opt.day {
         1 => "01",
         2 => "02",
+        3 => "03",
         _ => panic!("Provided day not implemented"),
     };
 

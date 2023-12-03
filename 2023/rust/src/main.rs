@@ -11,8 +11,9 @@ fn main() -> Result<(), Box<dyn Error>> {
     println!("Reading from file {}", path);
     let input = fs::read_to_string(path)?;
     match opt.day {
-        1 => days::day_01::day_01(opt, input),
-        2 => days::day_02::day_02(opt, input),
+        1 => days::day_01::solve(opt, input),
+        2 => days::day_02::solve(opt, input),
+        3 => days::day_03::solve(opt, input),
         _ => println!("Day {} is unimplemented", opt.day),
     }
 

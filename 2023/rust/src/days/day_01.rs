@@ -1,7 +1,7 @@
 use crate::opt::{Opt, Question};
 use std::collections::HashMap;
 
-pub fn day_01(opt: Opt, input: String) {
+pub fn solve(opt: Opt, input: String) {
     match opt.question {
         Question::A => {
             println!("Solution to A: {}", get_a(input));
