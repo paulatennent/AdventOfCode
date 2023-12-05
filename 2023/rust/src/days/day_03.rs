@@ -1,4 +1,6 @@
 use crate::opt::{Opt, Question};
+use regex::Regex;
+use std::collections::{HashMap, HashSet};
 
 pub fn solve(opt: Opt, input: String) {
     match opt.question {
@@ -82,6 +84,57 @@ fn is_symbol(c: &char) -> bool {
     !(c.is_ascii_digit() || *c == '.' || *c == '\n')
 }
 
+#[derive(Debug, PartialEq, Eq, Hash)]
+struct Info {
+    start: usize,
+    num: i32,
+}
+
 fn get_b(input: String) -> i32 {
-    todo!()
+    let mut nums: HashMap<i32, Info> = HashMap::new();
+
+    // go thorugh and hashmap everynumber
+    let re = Regex::new(r"([0-9]+)").unwrap();
+
+    re.find_iter(&input).for_each(|cap| {
+        let num: i32 = cap.as_str().parse().unwrap();
+        (cap.start()..cap.end()).for_each(|loc| {
+            nums.insert(
+                loc as i32,
+                Info {
+                    start: cap.start(),
+                    num,
+                },
+            );
+        })
+    });
+
+    let row_len = input.find('\n').unwrap() as i32 + 1;
+    let surround: Vec<i32> = vec![
+        -row_len - 1,
+        -row_len,
+        -row_len + 1,
+        -1,
+        1,
+        row_len - 1,
+        row_len,
+        row_len + 1,
+    ];
+
+    let re = Regex::new(r"(\*)").unwrap();
+    re.find_iter(&input).filter_map(|cap| {
+        let gear_loc = cap.start() as i32;
+        let surround_nums = surround
+            .iter()
+            .filter_map(|offset| {
+            nums.get(&(gear_loc + offset))
+            })
+            .collect::<HashSet<_>>();
+        if surround_nums.len() == 2 {
+            Some(surround_nums.iter().map(|info| info.num).product::<i32>()) 
+        } else {
+            None
+        }
+    }).sum()
+
 }
