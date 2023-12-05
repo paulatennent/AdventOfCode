@@ -2,12 +2,7 @@ use crate::opt::Opt;
 use crate::opt::Question;
 
 pub fn get_path(opt: &Opt) -> String {
-    let day = match opt.day {
-        1 => "01",
-        2 => "02",
-        3 => "03",
-        _ => panic!("Provided day not implemented"),
-    };
+    let day = format!("{:0>2}", opt.day.to_string());
 
     match opt.small {
         true => match opt.question {

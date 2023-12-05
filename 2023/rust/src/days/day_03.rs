@@ -76,7 +76,6 @@ fn get_a(input: String) -> u32 {
             iter.next();
         });
     }
-
     sum
 }
 
@@ -123,19 +122,18 @@ fn get_b(input: String) -> i32 {
 
     // find each *, find surrounding numbers, product then sum!
     let re = Regex::new(r"(\*)").unwrap();
-    re.find_iter(&input).filter_map(|cap| {
-        let gear_loc = cap.start() as i32;
-        let surround_nums = surround
-            .iter()
-            .filter_map(|offset| {
-            nums.get(&(gear_loc + offset))
-            })
-            .collect::<HashSet<_>>();
-        if surround_nums.len() == 2 {
-            Some(surround_nums.iter().map(|info| info.num).product::<i32>()) 
-        } else {
-            None
-        }
-    }).sum()
-
+    re.find_iter(&input)
+        .filter_map(|cap| {
+            let gear_loc = cap.start() as i32;
+            let surround_nums = surround
+                .iter()
+                .filter_map(|offset| nums.get(&(gear_loc + offset)))
+                .collect::<HashSet<_>>();
+            if surround_nums.len() == 2 {
+                Some(surround_nums.iter().map(|info| info.num).product::<i32>())
+            } else {
+                None
+            }
+        })
+        .sum()
 }
