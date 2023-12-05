@@ -93,9 +93,8 @@ struct Info {
 fn get_b(input: String) -> i32 {
     let mut nums: HashMap<i32, Info> = HashMap::new();
 
-    // go thorugh and hashmap everynumber
+    // hash each number, location -> (start location, num)
     let re = Regex::new(r"([0-9]+)").unwrap();
-
     re.find_iter(&input).for_each(|cap| {
         let num: i32 = cap.as_str().parse().unwrap();
         (cap.start()..cap.end()).for_each(|loc| {
@@ -109,6 +108,7 @@ fn get_b(input: String) -> i32 {
         })
     });
 
+    // this is to iterate over surrounding values
     let row_len = input.find('\n').unwrap() as i32 + 1;
     let surround: Vec<i32> = vec![
         -row_len - 1,
@@ -121,6 +121,7 @@ fn get_b(input: String) -> i32 {
         row_len + 1,
     ];
 
+    // find each *, find surrounding numbers, product then sum!
     let re = Regex::new(r"(\*)").unwrap();
     re.find_iter(&input).filter_map(|cap| {
         let gear_loc = cap.start() as i32;
