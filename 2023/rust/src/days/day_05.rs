@@ -1,6 +1,5 @@
 use crate::opt::{Opt, Question};
 use regex::Regex;
-use std::collections::{HashSet, VecDeque};
 use std::ops::Range;
 
 pub fn solve(opt: Opt, input: String) {
@@ -77,7 +76,7 @@ fn get_b(input: String) -> i64 {
     let (seeds, input) = input.split_once("\n\n").unwrap();
 
     let re = Regex::new(r"(([0-9]+ [0-9]+))").unwrap();
-    let seeds: Vec<Range<i64>> = re
+    let _seeds: Vec<Range<i64>> = re
         .find_iter(seeds)
         .map(|cap| {
             let range = cap
@@ -89,11 +88,11 @@ fn get_b(input: String) -> i64 {
         })
         .collect();
 
-    let mut mapping: Vec<Vec<(i64, i64, i64)>> = input
+    let mut _mapping: Vec<Vec<(i64, i64, i64)>> = input
         .split("\n\n")
         .map(|block| {
             let re = Regex::new(r"[0-9]+[0-9 ]*").unwrap();
-            let mut blocks = re
+            let blocks = re
                 .find_iter(block)
                 .map(|line| {
                     let buff = line
@@ -105,38 +104,13 @@ fn get_b(input: String) -> i64 {
                     (buff[0], buff[1], buff[2])
                 })
                 .collect::<Vec<_>>();
-            blocks.sort();
+            //blocks.sort_by(|(d, s, l) s);
             blocks
         })
         .collect::<Vec<_>>();
-    mapping.reverse();
 
-    println!("{:?}", mapping);
+    println!("{:?}", _mapping);
 
-    let ordering = get_ordering(mapping);
-    todo!();
-}
-
-fn get_ordering(mapping: Vec<Vec<(i64, i64, i64)>>) {
-    let ordering: Vec<(i64, i64)> = Vec::new();
-    mapping.iter().for_each(|block| {
-        let prev_partitions = ordering
-            .iter()
-            .map(|(s, r)| vec![*s, *s + *r])
-            .flatten()
-            .collect::<HashSet<i64>>();
-        let curr_partitions = block
-            .iter()
-            .map(|(d, s, r)| vec![*d, *d + *r])
-            .flatten()
-            .collect::<HashSet<i64>>();
-        let mut both : Vec<_> = prev_partitions
-            .union(&curr_partitions).collect();
-
-        both.sort();
-
-        
-        println!("{:?}", both);
-    });
+    // let composition = composition(mapping); //
     todo!();
 }
