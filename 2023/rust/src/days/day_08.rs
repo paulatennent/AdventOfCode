@@ -1,6 +1,6 @@
 use crate::opt::{Opt, Question};
 use regex::Regex;
-use std::collections::{HashMap};
+use std::collections::HashMap;
 
 pub fn solve(opt: Opt, input: String) {
     match opt.question {

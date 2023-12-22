@@ -19,6 +19,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         6 => days::day_06::solve(opt, input),
         7 => days::day_07::solve(opt, input),
         8 => days::day_08::solve(opt, input),
+        9 => days::day_09::solve(opt, input),
         _ => println!("Day {} is unimplemented", opt.day),
     }
 
