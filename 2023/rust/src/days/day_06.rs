@@ -1,7 +1,4 @@
 use crate::opt::{Opt, Question};
-use regex::Regex;
-use std::collections::{HashSet, VecDeque};
-use std::ops::Range;
 
 pub fn solve(opt: Opt, input: String) {
     match opt.question {
@@ -14,18 +11,10 @@ pub fn solve(opt: Opt, input: String) {
     }
 }
 
-fn get_a(input: String) -> i64 {
-    let mut input = input.split('\n');
-    let re = Regex::new(r" +").unwrap();
-    let time = re.split(input.next().unwrap());
-    let dist = re.split(input.next().unwrap());
-
-    let time = time.map(|num| {
-        num.parse::<i32>();
-    })
+fn get_a(_input: String) -> i64 {
     todo!();
 }
 
-fn get_b(input: String) -> i64 {
+fn get_b(_input: String) -> i64 {
     todo!();
 }
